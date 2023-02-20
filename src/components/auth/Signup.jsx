@@ -71,7 +71,8 @@ export default function Signup() {
   return (
     <FormContainer>
       <Container>
-        <form onSubmit={handleSubmit} className={commonModalClasses + " w-72"}>
+        {/* <form onSubmit={handleSubmit} className={commonModalClasses + " w-72"}> */}
+        <form className={commonModalClasses + " w-72"}>
           <Title>Sign up</Title>
           <FormInput
             value={name}
@@ -95,7 +96,7 @@ export default function Signup() {
             name="password"
             type="password"
           />
-          <Submit value="Sign up" />
+          {/* <Submit value="Sign up" /> */}
 
           <div className="flex justify-between">
             <CustomLink to="/auth/forget-password">Forget password</CustomLink>
