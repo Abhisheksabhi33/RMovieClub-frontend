@@ -1,5 +1,9 @@
 import axios from "axios";
 
-const client = axios.create({ baseURL: "http://localhost:8000/api" });
+// https://rmovie.onrender.com/api
+
+const baseurl = "https://rmovie.onrender.com/api"
+
+const client = axios.create({ baseURL: baseurl});
 
 export default client;
