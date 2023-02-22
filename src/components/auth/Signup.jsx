@@ -46,6 +46,7 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     const { ok, error } = validateUserInfo(userInfo);
 
@@ -54,13 +55,12 @@ export default function Signup() {
     const response = await createUser(userInfo);
     if (response.error) return console.log(response.error);
 
-    updateNotification("success", "Account created successfully!");
-    
+    updateNotification("success", "Account created successfully !");
+    updateNotification("success", " Please use your credentials to login !");
+     
 
-    navigate("/", {
-      state: { user: response.user },
-      replace: true,
-    });
+
+    navigate("/auth/signin");
   };
 
   useEffect(() => {

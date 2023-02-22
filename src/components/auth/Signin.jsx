@@ -74,7 +74,7 @@ export default function Signin() {
           <Submit value="Sign in" busy={isPending} />
 
           <div className="flex justify-between">
-            <CustomLink to="/auth/forget-password">Forget password</CustomLink>
+            <p to="/auth/forget-password">Forget password</p>
             <CustomLink to="/auth/signup">Sign up</CustomLink>
           </div>
         </form>
