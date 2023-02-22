@@ -54,7 +54,10 @@ export default function Signup() {
     const response = await createUser(userInfo);
     if (response.error) return console.log(response.error);
 
-    navigate("/auth/verification", {
+    updateNotification("success", "Account created successfully!");
+    
+
+    navigate("/", {
       state: { user: response.user },
       replace: true,
     });
