@@ -3,6 +3,7 @@ import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { getLatestUploads } from "../../api/movie";
 import { useNotification } from "../../hooks";
+import loaderImg from "../images/loading.gif";
 
 let count = 0;
 let intervalId;
@@ -18,15 +19,20 @@ export default function HeroSlidShow() {
   const [visible, setVisible] = useState(true);
   const slideRef = useRef(null);
   const clonedSlideRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const { updateNotification } = useNotification();
 
   const fetchLatestUploads = async (signal) => {
+    setLoading(true);
     const { error, movies } = await getLatestUploads(signal);
     if (error) return updateNotification("error", error);
+    setLoading(false);
+
 
     setSlides([...movies]);
     setCurrentSlide(movies[0]);
+
   };
 
   const startSlideShow = () => {
@@ -40,6 +46,7 @@ export default function HeroSlidShow() {
 
   const pauseSlideShow = () => {
     clearInterval(intervalId);
+
   };
 
   const updateUpNext = (currentIndex) => {
@@ -118,12 +125,20 @@ export default function HeroSlidShow() {
 
   useEffect(() => {
     if (slides.length && visible) {
+
       startSlideShow();
+
       updateUpNext(count);
     } else pauseSlideShow();
   }, [slides.length, visible]);
 
   return (
+    <>
+    { loading ? <div className="w-full h-full flex items-center justify-center "> 
+
+     <img className="w-24 scale-50 rounded-full mt-11" src={loaderImg} alt="loading..." />
+    
+    </div> :  
     <div className="w-full md:w-auto flex">
       {/* Slide show section */}
       <div className="md:w-4/5 w-full aspect-video relative overflow-hidden">
@@ -168,6 +183,8 @@ export default function HeroSlidShow() {
         })}
       </div>
     </div>
+    }
+    </>
   );
 }
 
