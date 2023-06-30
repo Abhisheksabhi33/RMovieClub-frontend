@@ -11,6 +11,7 @@ import ConfirmModal from "../models/ConfirmModal";
 import NotFoundText from "../NotFoundText";
 import EditRatingModal from "../models/EditRatingModal";
 
+
 const getNameInitial = (name = "") => {
   return name[0].toUpperCase();
 };
@@ -103,14 +104,8 @@ export default function MovieReviews() {
     if (movieId) fetchReviews();
   }, [movieId]);
 
-  const url = window.location.href;
+ 
 
-  console.log(url);
-
-  const handleBackClick = () => {
-    
-      window.location.href = `/movie/${movieId}`;
-  };
 
   return (
     <div className="dark:bg-primary bg-white min-h-screen pb-10">
@@ -122,10 +117,6 @@ export default function MovieReviews() {
             </span>{" "}
             {movieTitle}
           </h1>
-
-          <p className="mx-2">
-            <CustomButtonLink label="Back" onClick={handleBackClick} />
-          </p>
 
           {profileId ? (
             <CustomButtonLink
